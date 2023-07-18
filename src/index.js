@@ -4,6 +4,12 @@ const apiRoutes = require('./routes')
 
 const app = express();
 
+
+app.use(express.json());
+app.use(express.urlencoded({extended: true}));
+
+
+
 app.get('/', (req, res)=>{
     return res.json({msg: "server is live"});
 })
