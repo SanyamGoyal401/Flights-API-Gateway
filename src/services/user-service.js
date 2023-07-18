@@ -1,7 +1,7 @@
 const {UserRepository} = require('../repositories')
 const {StatusCodes} = require('http-status-codes')
 const AppError = require('../utils/errors/app-error')
-const {checkPassword, createToken} = require('../utils/common/auth')
+const {checkPassword, createToken, verifyToken} = require('../utils/common/auth')
 const userRepository = new UserRepository();
 
 
@@ -45,8 +45,32 @@ async function signin(data){
 }
 
 
+async function isAuthenticated(token){
+    try{
+        if(!token){
+            return new AppError('Missing jwt token', StatusCodes.BAD_REQUEST);
+        }
+        const response = verifyToken(token);
+        const user = await userRepository.get(response.id);
+        if(!user){
+            throw new AppError('No user found', StatusCodes.NOT_FOUND);
+        }
+        return user.id;
+    }
+    catch(error){
+        if(error instanceof AppError){
+            throw error;
+        }
+        if(error.name === 'JsonWebTokenError'){
+            throw new AppError('Token not verfied', StatusCodes.BAD_REQUEST);
+        }
+        throw new AppError('Something went wrong', StatusCodes.INTERNAL_SERVER_ERROR);
+    }
+}
+
 
 module.exports = {
     createUser,
-    signin
+    signin,
+    isAuthenticated,
 }

@@ -21,7 +21,7 @@ function createToken(payload){
     }
     catch(error){
         console.log(error);
-        throw new AppError('something bad wrong', StatusCodes.INTERNAL_SERVER_ERROR);
+        throw new AppError('Something went wrong', StatusCodes.INTERNAL_SERVER_ERROR);
     }
 }
 
