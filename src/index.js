@@ -15,9 +15,8 @@ const limiter = rateLimit({
 
 app.use(limiter);
 
-app.get('/', (req, res)=>{
-    return res.json({msg: "server is live"});
-})
+app.use(express.json());
+app.use(express.urlencoded({extended: true}));
 
 
 app.use('/api', apiRoutes);
@@ -30,8 +29,6 @@ app.use('/bookingService', createProxyMiddleware({
     changeOrigin: true,
     pathRewrite: {'^/bookingService' : '/'} }))
 
-app.use(express.json());
-app.use(express.urlencoded({extended: true}));
 
 app.listen(ServerConfig.PORT, ()=>{
     console.log(`Successfully started the port at ${ServerConfig.PORT}`);

@@ -18,8 +18,10 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Role.init({
-    name: DataTypes.STRING,
-    values: [ADMIN, CUSTOMER, FLIGHT_COMPANY]
+    name: {
+      type : DataTypes.STRING,
+      values: [ADMIN, CUSTOMER, FLIGHT_COMPANY],
+    },
   }, {
     sequelize,
     modelName: 'Role',
