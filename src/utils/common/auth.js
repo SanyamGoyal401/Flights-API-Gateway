@@ -16,12 +16,11 @@ const { StatusCodes } = require('http-status-codes');
 
 function createToken(payload){
     try{
-        const token = jwt.sign(payload, SECRET_KEY, {expiresIn});
+        const token = jwt.sign(payload, SECRET_KEY, {expiresIn: expiresIn});
         return token;
     }
     catch(error){
-        console.log(error);
-        throw new AppError('Something went wrong', StatusCodes.INTERNAL_SERVER_ERROR);
+        throw error;
     }
 }
 
@@ -31,8 +30,7 @@ function verifyToken(token){
 
     }
     catch(error){
-        console.log(error);
-        throw new AppError("Something went wrong", StatusCodes.INTERNAL_SERVER_ERROR)
+        throw error;
     }
 }
 

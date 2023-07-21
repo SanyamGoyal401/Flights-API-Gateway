@@ -39,7 +39,6 @@ async function signin(data){
         return jwt;
     }
     catch(error){
-        console.log(error)
         throw new AppError(error.message, StatusCodes.INTERNAL_SERVER_ERROR);
     }
 }
@@ -61,8 +60,11 @@ async function isAuthenticated(token){
         if(error instanceof AppError){
             throw error;
         }
-        if(error.name === 'JsonWebTokenError'){
-            throw new AppError('Token not verfied', StatusCodes.BAD_REQUEST);
+        if(error.name == 'JsonWebTokenError'){
+            throw new AppError('Token Invalid', StatusCodes.BAD_REQUEST);
+        }
+        if(error.name == 'TokenExpiredError'){
+            throw new AppError('Token Expired', StatusCodes.BAD_REQUEST);
         }
         throw new AppError('Something went wrong', StatusCodes.INTERNAL_SERVER_ERROR);
     }
