@@ -13,13 +13,16 @@
 <h3>Services</h3>
 <ul>
 <li>
-<a href="https://github.com/SanyamGoyal401/Flights-Service" target="_blank"><h4>Flights Service</h4></a>
+<h4>
+<a href="https://github.com/SanyamGoyal401/Flights-Service" target="_blank">Flights Service</a></h4>
 </li>
 <li>
-<a href="https://github.com/SanyamGoyal401/Flights-Booking-Service" target="_blank"><h4>Flights Booking Service</h4></a>
+<h4>
+<a href="https://github.com/SanyamGoyal401/Flights-Booking-Service" target="_blank">Flights Booking Service</a></h4>
 </li>
 <li>
-<a href="https://github.com/SanyamGoyal401/Flights-Notification-Service" target="_blank"><h4>Flights Notification Service</h4></a>
+<h4>
+<a href="https://github.com/SanyamGoyal401/Flights-Notification-Service" target="_blank">Flights Notification Service</a></h4>
 </li>
 </ul>
 
